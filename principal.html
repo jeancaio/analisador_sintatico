@@ -61,33 +61,33 @@
             <th>$</th>
           </thead>
           <tbody>
-            <tr class="tr-tabela">
+            <tr class="tr-tabela linha-s">
               <td>S</td>
-              <td>S => aAc</td>
-              <td>S => C</td>
-              <td></td>
-              <td>S => €</td>
+              <td class="coluna-a">S => aAc</td>
+              <td class="coluna-b">S => C</td>
+              <td class="coluna-c"></td>
+              <td class="coluna-$">S => €</td>
             </tr>
-            <tr class="tr-tabela">
+            <tr class="tr-tabela linha-a">
               <td>A</td>
-              <td></td>
-              <td></td>
-              <td>A => cB</td>
-              <td></td>
+              <td class="coluna-a"></td>
+              <td class="coluna-b"></td>
+              <td class="coluna-c">A => cB</td>
+              <td class="coluna-$"></td>
             </tr>
-            <tr class="tr-tabela">
+            <tr class="tr-tabela linha-b">
               <td>B</td>
-              <td></td>
-              <td>B => bCa</td>
-              <td></td>
-              <td></td>
+              <td class="coluna-a"></td>
+              <td class="coluna-b">B => bCa</td>
+              <td class="coluna-c"></td>
+              <td class="coluna-$"></td>
             </tr>
-            <tr class="tr-tabela">
+            <tr class="tr-tabela linha-c">
               <td>C</td>
-              <td>C => aCA</td>
-              <td>C => B</td>
-              <td></td>
-              <td></td>
+              <td class="coluna-a">C => aCA</td>
+              <td class="coluna-b">C => B</td>
+              <td class="coluna-c"></td>
+              <td class="coluna-$"></td>
             </tr>
           </tbody>
         </table>
@@ -105,7 +105,7 @@
 
       <div class="row">
         <div style="margin-top: 7px" class="col m8 col s8" data-position="botton" data-delay="50">
-          <input placeholder="Insira aqui os tokens" class="campo-dicionario"></imput>
+          <input placeholder="Insira aqui os tokens" class="token"></imput>
         </div>
           <a class="btn black botao-inserir" data-position="botton" data-delay="50">
             <i class="material-icons">Gerar</i>
@@ -113,7 +113,7 @@
           <a class="btn black botao-inserir" data-position="botton" data-delay="50">
             <i class="material-icons">Testar</i>
           </a>
-          <a class="btn black botao-inserir" data-position="botton" data-delay="50">
+          <a class="btn black botao-passos" data-position="botton" data-delay="50">
             <i class="material-icons">Passo a passo</i>
           </a>
       </div>
@@ -125,6 +125,9 @@
             <th>Entrada</th>
             <th>Ação</th>
           </thead>
+          <tbody class="tbody-sintatico">
+
+          </tbody>
         </table>
       </div>
     </div>
