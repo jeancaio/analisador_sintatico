@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Analisador Sintático</title>
+    <link rel="stylesheet" href="css/libs/materialize.min.css">
+    <link rel="stylesheet" href="css/libs/google-fonts.css">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <nav>
+     <div class="nav-wrapper black">
+       <div class="container">
+         <span style="font-size: 30px;">Analisador Sintático</span>
+       </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row area-detalhes" style="margin-top: 2em;">
+      <div class="area-gramatica col m2">
+        <span>
+          <strong>Gramática: <br></strong>
+          S ::= aAc | bC | € <br>
+          A ::= cB  | A <br>
+          B ::= bCa <br>
+          C ::= aCA | B <br>
+        </span>
+      </div>
+
+      <div class=" area-first col m2">
+        <span>
+          <strong>First:</strong> <br>
+          S ::= { a, b, € } <br>
+          A ::= { c } <br>
+          B ::= { b } <br>
+          C ::= { a, b } <br>
+        </span>
+      </div>
+
+      <div class=" area-follow col m2">
+        <span>
+          <strong>Follow:</strong> <br>
+          S ::= { $ } <br>
+          A ::= { c, a, $ } <br>
+          B ::= {c, a, $ } <br>
+          C ::= { a, c, $ } <br>
+        </span>
+      </div>
+
+      <div class="area-tabela col m6">
+        <strong>Tabela:</strong>
+        <table class="centered bordered tabela-automato">
+          <thead>
+            <th>-</th>
+            <th>a</th>
+            <th>b</th>
+            <th>c</th>
+            <th>$</th>
+          </thead>
+          <tbody>
+            <tr class="tr-tabela">
+              <td>S</td>
+              <td>S => aAc</td>
+              <td>S => C</td>
+              <td></td>
+              <td>S => €</td>
+            </tr>
+            <tr class="tr-tabela">
+              <td>A</td>
+              <td></td>
+              <td></td>
+              <td>A => cB</td>
+              <td></td>
+            </tr>
+            <tr class="tr-tabela">
+              <td>B</td>
+              <td></td>
+              <td>B => bCa</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr class="tr-tabela">
+              <td>C</td>
+              <td>C => aCA</td>
+              <td>C => B</td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <div class="col m12">
+      <button class="btn black btn-detalhes pull-rigth" type="button" name="button"><span>Ocular detalhes</span></button>
+    </div>
+
+    <div style="margin-top: 2em;" class="area-analise">
+      <div class="col m6 col s6">
+        <h5 class="center">Análise</h5>
+      </div>
+
+      <div class="row">
+        <div style="margin-top: 7px" class="col m8 col s8" data-position="botton" data-delay="50">
+          <input placeholder="Insira aqui os tokens" class="campo-dicionario"></imput>
+        </div>
+          <a class="btn black botao-inserir" data-position="botton" data-delay="50">
+            <i class="material-icons">Gerar</i>
+          </a>
+          <a class="btn black botao-inserir" data-position="botton" data-delay="50">
+            <i class="material-icons">Testar</i>
+          </a>
+          <a class="btn black botao-inserir" data-position="botton" data-delay="50">
+            <i class="material-icons">Passo a passo</i>
+          </a>
+      </div>
+
+      <div class="col m12 area-analise">
+        <table class="centered borderd">
+          <thead>
+            <th>Pilha</th>
+            <th>Entrada</th>
+            <th>Ação</th>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer black">
+    <div class="footer-copyright">
+      <div class="container">
+          <strong>Copyright</strong> Jean Caio Andreolla &copy; CC2014 - URI
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/tabela.js"></script>
+
+</body>
+</html>
