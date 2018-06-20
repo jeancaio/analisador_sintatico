@@ -23,19 +23,19 @@
       <div class="area-gramatica col m2">
         <span>
           <strong>Gramática: <br></strong>
-          S ::= aAc | bC | € <br>
-          A ::= cB  | A <br>
-          B ::= bCa <br>
-          C ::= aCA | B <br>
+          S ::= aAc | bC <br>
+          A ::= cB <br>
+          B ::= bCa | € <br>
+          C ::= aBa | b <br>
         </span>
       </div>
 
       <div class=" area-first col m2">
         <span>
           <strong>First:</strong> <br>
-          S ::= { a, b, € } <br>
+          S ::= { a, b } <br>
           A ::= { c } <br>
-          B ::= { b } <br>
+          B ::= { b, € } <br>
           C ::= { a, b } <br>
         </span>
       </div>
@@ -44,9 +44,9 @@
         <span>
           <strong>Follow:</strong> <br>
           S ::= { $ } <br>
-          A ::= { c, a, $ } <br>
-          B ::= {c, a, $ } <br>
-          C ::= { a, c, $ } <br>
+          A ::= { c } <br>
+          B ::= { a, c } <br>
+          C ::= { a, $ } <br>
         </span>
       </div>
 
