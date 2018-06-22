@@ -21,6 +21,17 @@ $('.botao-passos').click(function() {
   }
   empilha();
 })
+
+$('.botao-testar').click(function(){
+  $tabela.append(trSintatico())
+  $('.tr-sintatico').append(tdPilha("$S"))
+  $('.tr-sintatico').append(tdEntrada(($('.token').val()) + "$"))
+  var cedula = $(".tabela-automato").find('.linha-S').find(".coluna-" + $('.token').val().split('')[0]).text()
+  $('.tr-sintatico').append(tdAcao(cedula))
+  while($('.td-acao').last().text().split(' ')[0] != "Erro" || $('.td-acao').last().text().split(' ')[0] != "OK") {
+    empilha();
+  }
+})
   //
   // if ($('td').last()[0].className === "td-entrada") {
   //   var texto_entrada = $('.td-entrada').last().text();
@@ -91,4 +102,64 @@ function tdAcao(elemento) {
 
 function trSintatico() {
   return "<tr class='tr-sintatico'></tr>"
+}
+
+$('.botao-gerar').click(function() {
+  tamanho = 20000
+  var token = gerarTokens('');
+  token = token.split("")
+  while (true) {
+    token = gerarTokens(token.join('')).split('')
+    var errado = false
+    token.forEach(function(e) {
+      if (e === e.toUpperCase()) {
+          errado = true
+        }
+    })
+    if (errado) {
+      gerarTokens(token.join(''))
+    } else {
+      token = token.join('')
+      $('.token').val(token)
+      debugger
+      return token
+      break
+    }
+  }
+})
+
+function objetos(letra){
+  if (letra === "s") {
+    return ['aAc', 'bC']
+  }
+  if (letra === "a") {
+    return ['cB']
+  }
+  if (letra === "b") {
+    return ['€', 'bCa']
+  }
+  if (letra === "c") {
+    return [ 'aBa', 'b']
+  }
+}
+
+function gerarTokens(token) {
+  if (token === '') {
+    token = objetos('s')[Math.floor(Math.random()*objetos('s').length)];
+  } else {
+    token = token
+  }
+  token = token.split("")
+  var novo_token = []
+  token.forEach(function (e){
+    if (e === e.toUpperCase()) {
+      var letra = objetos(e.toLowerCase())
+      e = letra[Math.floor(Math.random()*letra.length)];
+    }
+    if (e != '€') {
+      novo_token.push(e)
+      token = novo_token.join('')
+    }
+  })
+  return token
 }

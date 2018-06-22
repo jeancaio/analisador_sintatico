@@ -1,2 +1,9 @@
 corretos:
 acbaaac
+acbbac
+bb
+acc
+
+errados:
+bacaba erro em 6 iterações
+babaca erro em 10 iterações 
