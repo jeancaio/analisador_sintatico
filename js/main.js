@@ -22,6 +22,7 @@ $('.botao-passos').click(function() {
   $('.botao-testar').css('display', 'none')
   $('.botao-gerar').css('display', 'none')
   empilha();
+  $('html').prop("scrollTop", $('html').prop("scrollHeight"));
 })
 
 $('.botao-testar').click(function(){
@@ -34,8 +35,10 @@ $('.botao-testar').click(function(){
   $('.botao-passos').css('display', 'none')
   $('.botao-testar').css('display', 'none')
   $('.botao-gerar').css('display', 'none')
+
   while($('.td-acao').last().text().split(' ')[0] != "Erro" || $('.td-acao').last().text().split(' ')[0] != "OK") {
     empilha();
+    $('html').prop("scrollTop", $('html').prop("scrollHeight"));
   }
 })
   //
