@@ -19,6 +19,8 @@ $('.botao-passos').click(function() {
     var cedula = $(".tabela-automato").find('.linha-S').find(".coluna-" + $('.token').val().split('')[0]).text()
     $('.tr-sintatico').append(tdAcao(cedula))
   }
+  $('.botao-testar').css('display', 'none')
+  $('.botao-gerar').css('display', 'none')
   empilha();
 })
 
@@ -28,6 +30,10 @@ $('.botao-testar').click(function(){
   $('.tr-sintatico').append(tdEntrada(($('.token').val()) + "$"))
   var cedula = $(".tabela-automato").find('.linha-S').find(".coluna-" + $('.token').val().split('')[0]).text()
   $('.tr-sintatico').append(tdAcao(cedula))
+  $('.botao-reiniciar').css('display', '')
+  $('.botao-passos').css('display', 'none')
+  $('.botao-testar').css('display', 'none')
+  $('.botao-gerar').css('display', 'none')
   while($('.td-acao').last().text().split(' ')[0] != "Erro" || $('.td-acao').last().text().split(' ')[0] != "OK") {
     empilha();
   }
@@ -64,6 +70,9 @@ function cedulaComparavel(linha, coluna) {
     linha = 'S'
   }
   if (linha === "S" && coluna === "s")  {
+    $('.botao-reiniciar').css('display', '')
+    $('.botao-passos').css('display', 'none')
+    $('.tokens-corretos').val($('.tokens-corretos').val() + ' ' + $('.token').val())
     return $('.tr-sintatico').last().append(tdAcao("OK em " + $('.tbody-sintatico').find('tr').length + " iterações"))
   } else if (coluna === linha) {
     var ultima_letra_pilha = $('.td-pilha').last().text().split('').pop()
@@ -83,6 +92,8 @@ function cedulaComparavel(linha, coluna) {
     if (cedula != '') {
       return $('.tr-sintatico').last().append(tdAcao(cedula))
     } else {
+      $('.botao-reiniciar').css('display', '')
+      $('.tokens-incorretos').val($('.tokens-incorretos').val() + ' ' + $('.token').val())
       return $('.tr-sintatico').last().append(tdAcao("Erro em " + $('.tbody-sintatico').find('tr').length + " iterações"))
     }
   }
@@ -121,7 +132,6 @@ $('.botao-gerar').click(function() {
     } else {
       token = token.join('')
       $('.token').val(token)
-      debugger
       return token
       break
     }
@@ -163,3 +173,13 @@ function gerarTokens(token) {
   })
   return token
 }
+
+$('.botao-reiniciar').click(function() {
+  $('.token').val('')
+  $('.tbody-sintatico').html('')
+  $('.botao-passos').css('display', '')
+  $('.botao-testar').css('display', '')
+  $('.botao-gerar').css('display', '')
+  $('.botao-reiniciar').css('display', 'none')
+  var click = 0
+})

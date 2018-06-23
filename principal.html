@@ -104,15 +104,23 @@
       </div>
 
       <div class="row">
-        <div style="margin-top: 7px" class="col m9 col s8" data-position="botton" data-delay="50">
+        <div style="margin-top: 7px" class="col m9 col s8">
           <input placeholder="Insira aqui os tokens" class="token"></imput>
         </div>
-          <a class="btn black botao-gerar" data-position="botton" data-delay="50">
+          <a class="btn black botao-gerar">
             Gerar
           </a>
-          <a class="btn black botao-testar" data-position="botton" data-delay="50">
+          <a class="btn black botao-testar">
             Testar
           </a>
+          <div style="margin-top: 7px" class="col m6">
+            <span>Tokens corretos:</span>
+            <input class="tokens-corretos"></imput>
+          </div>
+          <div style="margin-top: 7px" class="col m6">
+            <span>Tokens incorretos:</span>
+            <input class="tokens-incorretos"></imput>
+          </div>
       </div>
 
       <div class="col m12 area-analise">
@@ -128,8 +136,11 @@
         </table>
       </div>
       <div class="center">
-        <a style="margin: 2em;" class="btn black botao-passos" data-position="botton" data-delay="50">
+        <a style="margin: 2em;" class="btn black botao-passos">
           Passo a passo
+        </a>
+        <a style="margin: 2em; display: none" class="btn black botao-reiniciar">
+          Reiniciar
         </a>
       </div>
     </div>
