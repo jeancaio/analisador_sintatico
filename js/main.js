@@ -18,10 +18,13 @@ $('.botao-passos').click(function() {
     $('.tr-sintatico').append(tdEntrada(($('.token').val()) + "$"))
     var cedula = $(".tabela-automato").find('.linha-S').find(".coluna-" + $('.token').val().split('')[0]).text()
     $('.tr-sintatico').append(tdAcao(cedula))
+  } else if ($('.td-acao').last().text().split(' ')[0] === "Lê") {
+    desempila()
+  } else {
+    empilha();
   }
   $('.botao-testar').css('display', 'none')
   $('.botao-gerar').css('display', 'none')
-  empilha();
   $('html').prop("scrollTop", $('html').prop("scrollHeight"));
 })
 
@@ -37,15 +40,14 @@ $('.botao-testar').click(function(){
   $('.botao-gerar').css('display', 'none')
 
   while($('.td-acao').last().text().split(' ')[0] != "Erro" || $('.td-acao').last().text().split(' ')[0] != "OK") {
-    empilha();
+    if ($('.td-acao').last().text().split(' ')[0] === "Lê") {
+      desempila()
+    } else {
+      empilha();
+    }
     $('html').prop("scrollTop", $('html').prop("scrollHeight"));
   }
 })
-  //
-  // if ($('td').last()[0].className === "td-entrada") {
-  //   var texto_entrada = $('.td-entrada').last().text();
-  //   cedulaComparavel($('.td-pilha').last().text().split('').pop(), texto_entrada.split('')[0])
-  // }
 
 function empilha() {
   var ultima_seq = $('.td-acao').last().text().split('> ')[1].split('').reverse().join('')
@@ -70,9 +72,9 @@ function cedulaComparavel(linha, coluna) {
     coluna = 's'
   }
   if (linha == '$') {
-    linha = 'S'
+    linha = 'k'
   }
-  if (linha === "S" && coluna === "s")  {
+  if (linha === "k" && coluna === "s")  {
     $('.botao-reiniciar').css('display', '')
     $('.botao-passos').css('display', 'none')
     $('.tokens-corretos').val($('.tokens-corretos').val() + ' ' + $('.token').val())
@@ -81,25 +83,29 @@ function cedulaComparavel(linha, coluna) {
     var ultima_letra_pilha = $('.td-pilha').last().text().split('').pop()
     var primeira_letra_entrada = $('.td-entrada').last().text().split('')[0]
 
-    var texto_pilha = $('.td-pilha').last().text()
-
     $('.tr-sintatico').last().append(tdAcao("Lê " + ultima_letra_pilha + ' e desempilha'))
-    $tabela.append(trSintatico())
-    $('.tr-sintatico').last().append(tdPilha(texto_pilha.substr(0, (texto_pilha.length - 1))))
-    $('.tr-sintatico').last().append(tdEntrada($('.td-entrada').last().text().substr(1)))
 
-    var texto_entrada = $('.td-entrada').last().text();
-    cedulaComparavel($('.td-pilha').last().text().split('').pop(), texto_entrada.split('')[0])
   }  else {
     var cedula = $(".tabela-automato").find('.linha-' + linha).find(".coluna-" + coluna).text()
     if (cedula != '') {
       return $('.tr-sintatico').last().append(tdAcao(cedula))
     } else {
       $('.botao-reiniciar').css('display', '')
+      $('.botao-passos').css('display', 'none')
       $('.tokens-incorretos').val($('.tokens-incorretos').val() + ' ' + $('.token').val())
       return $('.tr-sintatico').last().append(tdAcao("Erro em " + $('.tbody-sintatico').find('tr').length + " iterações"))
     }
   }
+}
+
+function desempila() {
+  var texto_pilha = $('.td-pilha').last().text()
+  $tabela.append(trSintatico())
+  $('.tr-sintatico').last().append(tdPilha(texto_pilha.substr(0, (texto_pilha.length - 1))))
+  $('.tr-sintatico').last().append(tdEntrada($('.td-entrada').last().text().substr(1)))
+
+  var texto_entrada = $('.td-entrada').last().text();
+  cedulaComparavel($('.td-pilha').last().text().split('').pop(), texto_entrada.split('')[0])
 }
 
 function tdPilha(elemento) {
@@ -184,5 +190,5 @@ $('.botao-reiniciar').click(function() {
   $('.botao-testar').css('display', '')
   $('.botao-gerar').css('display', '')
   $('.botao-reiniciar').css('display', 'none')
-  var click = 0
+  click = 0
 })
