@@ -1,46 +1,11 @@
-.campo-digitacao {
-    font-size: 20px;
-    height: 40px;
-    border: 1px solid black;
-}
-
-.quadro-de-palavras, .acertos, .erros{
-    border: 1px solid lightgray;
-    height: 30px;
-    font-size: 18px;
-}
-
-.campo-desativado {
-    background-color: lightgray;
-}
-
-.borda-verde {
-    border: 3px solid green;
-}
-
-.cabecalho {
-  background-color: lightgray;
-  width: 80px;
-}
-
 .footer {
   width:100%;
   background-color: black;
 }
 
-
 .tr-tabela td,th{
   border: 1px solid #808080;
   padding: 5px 10px;
-}
-
-.estado_selecionado td,
-.letra_selecionada{
-	background: rgba(0,255,0,0.1);
-}
-.estado_selecionado td.letra_selecionada{
-	color: #fff;
-	background: rgba(0,255,0,0.7);
 }
 
 .hidden {
