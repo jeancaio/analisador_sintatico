@@ -7,6 +7,28 @@ $('.btn-detalhes').click(function() {
   }
 })
 
+$('.botao-passos').css('display', 'none')
+$('.botao-testar').css('display', 'none')
+
+$('.botao-gerar').click( function() {
+  setTimeout(function(){
+    toggleBotoes()
+  },200)
+});
+$('.token').on('input', function() {
+  toggleBotoes()
+});
+
+function toggleBotoes() {
+  if ($('.token').val() != '') {
+    $('.botao-passos').css('display', '')
+    $('.botao-testar').css('display', '')
+  } else {
+    $('.botao-passos').css('display', 'none')
+    $('.botao-testar').css('display', 'none')
+  }
+}
+
 var click = 0
 var $tabela = $('.tbody-sintatico')
 
@@ -186,8 +208,6 @@ function gerarTokens(token) {
 $('.botao-reiniciar').click(function() {
   $('.token').val('')
   $('.tbody-sintatico').html('')
-  $('.botao-passos').css('display', '')
-  $('.botao-testar').css('display', '')
   $('.botao-gerar').css('display', '')
   $('.botao-reiniciar').css('display', 'none')
   click = 0
